@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="https://thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Parqueadero</title>
+<link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}">
+</head>
+<body> 
+	<div class="container">
+		<br>
+		<div>
+			<a href="/save/0" class="btn btn-primary">Agregar</a>
+		</div>
+		<div th:switch="${list}">
+			<h2 th:case="null">No hay autos</h2>
+			<div th:case="*">
+				<h2>Vehiculos</h2>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>PLACA</th>
+							<th>FECHA LLEGADA</th>
+							<th>HORA LLEGADA</th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="vehiculo : ${list}">
+							<td th:text="${vehiculo.id}">
+							<td th:text="${vehiculo.placa}">
+							<td th:text="${vehiculo.fechaLlegada}">
+							<td th:text="${vehiculo.horaLlegada}">
+							<td> <a class="btn btn-info" th:href="@{/save/{id}(id=${vehiculo.id})}">Hora salida</a></td>
+							<td> <a class="btn btn-danger" th:href="@{/delete/{id}(id=${vehiculo.id})	}">Eliminar</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>	
+		</div>	
+	</div>
+</body>
+</html>
